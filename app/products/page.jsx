@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Pagination from '@/component/Pagination'
 
-const LIMIT = 9
+const LIMIT = 10
 
 export default function ProductsPage() {
   const [products, setProducts] = useState([])

@@ -6,7 +6,7 @@ export default function ProductCart() {
   const { cartItems, removeFromCart } = useCart()
 
   return (
-    <div className='max-w-4xl mx-auto px-4 py-8'>
+    <div className='w-full mx-auto px-8 py-8'>
       <h2 className='text-3xl font-bold mb-6 text-center'>Your Cart</h2>
 
       {cartItems.length === 0 ? (

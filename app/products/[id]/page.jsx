@@ -45,27 +45,27 @@ export default function SingleProductDetails() {
   }
 
   return (
-    <section className='w-full mx-auto p-6'>
+    <section className='w-full mx-auto p-6 h-full'>
       <button className='mt-4' title='back to products list page'>
         <Link className='items-center' href='/products'>
           <span>←</span> Go Back
         </Link>
       </button>
 
-      <h2 className='text-3xl font-bold mb-4 text-center'>Product Details</h2>
+      <h2 className='text-3xl font-bold mb-6 text-center'>Product Details</h2>
 
-      <div className='bg-white rounded-xl shadow-md overflow-hidden md:flex md:items-center md:justify-between'>
+      <div className='bg-white rounded-xl overflow-hidden md:flex md:items-center md:justify-between'>
         {/* Image */}
         <div className='md:w-1/2'>
           <img
             src={product.image_url}
             alt={product.name}
-            className='h-82 w-full object-cover rounded'
+            className='h-full w-full object-cover rounded'
           />
         </div>
 
         {/* Content */}
-        <div className='p-6 md:w-1/2 space-y-3'>
+        <div className='p-6 md:w-1/2 space-y-4 pr-10'>
           <h3 className='text-xl font-semibold text-gray-800'>
             {product.name}
           </h3>
@@ -89,14 +89,12 @@ export default function SingleProductDetails() {
             </div>
           )}
 
-          <div className='flex items-center justify-between'>
-            <p className='text-lg text-gray-800 font-medium'>
-              Price: <span className='text-green-600'>${product.price}</span>
-            </p>
-            <p className='text-gray-700'>
-              Available Quantity: {product.quantity}
-            </p>
-          </div>
+          <p className='text-lg text-gray-800 font-medium'>
+            Price: <span className='text-green-600'>${product.price}</span>
+          </p>
+          <p className='text-gray-700'>
+            Available Quantity: {product.quantity}
+          </p>
 
           {/* Add to cart / View cart */}
           {viewCart ? (
