@@ -47,7 +47,7 @@ export default function SingleProductDetails() {
   return (
     <section className='w-full mx-auto p-8 h-full'>
       <button className='mt-6' title='back to products list page'>
-        <Link className='items-center' href='/products'>
+        <Link className='items-center underline' href='/products'>
           <span>←</span> Go Back
         </Link>
       </button>
@@ -60,7 +60,7 @@ export default function SingleProductDetails() {
           <img
             src={product.image_url}
             alt={product.name}
-            className='h-90 w-full object-cover rounded'
+            className='h-96 w-full object-cover rounded'
           />
         </div>
 
