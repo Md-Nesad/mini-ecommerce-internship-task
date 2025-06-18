@@ -45,16 +45,16 @@ export default function SingleProductDetails() {
   }
 
   return (
-    <section>
+    <section className='max-w-[1200px] h-screen'>
       <button className='mt-4' title='back to products list page'>
         <Link className='items-center' href='/products'>
           <span>←</span> Go Back
         </Link>
       </button>
 
-      <h2 className='text-3xl font-bold mb-2 text-center'>Product Details</h2>
+      <h2 className='text-3xl font-bold mb-4 text-center'>Product Details</h2>
 
-      <div className='bg-white rounded-xl shadow-md overflow-hidden md:flex md:items-center'>
+      <div className='bg-white rounded-xl shadow-md overflow-hidden md:flex md:items-center md:justify-between'>
         {/* Image */}
         <div className='md:w-1/2'>
           <img
