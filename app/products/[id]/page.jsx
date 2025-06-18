@@ -13,7 +13,9 @@ export default function SingleProductDetails() {
 
   const addProduct = () => {
     addToCart(product)
-    alert('view cart to see your products')
+    alert(
+      'Please view cart to see your products. The add to card button is now view cart button'
+    )
     setViewCart(true)
   }
 
