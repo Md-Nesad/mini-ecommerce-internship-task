@@ -45,7 +45,7 @@ export default function SingleProductDetails() {
   }
 
   return (
-    <section className='max-w-4xl mx-auto px-4'>
+    <section>
       <button className='mt-4' title='back to products list page'>
         <Link className='items-center' href='/products'>
           <span>←</span> Go Back
