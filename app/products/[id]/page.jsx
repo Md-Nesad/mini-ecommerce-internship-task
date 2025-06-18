@@ -38,15 +38,15 @@ export default function SingleProductDetails() {
 
   if (loading) {
     return (
-      <div className='flex justify-center items-center h-screen'>
+      <div className='flex justify-center items-center min-h-screen'>
         <p className='text-gray-500 text-lg'>Loading...</p>
       </div>
     )
   }
 
   return (
-    <section className='w-full mx-auto p-6 h-full'>
-      <button className='mt-4' title='back to products list page'>
+    <section className='w-full mx-auto p-8 h-full'>
+      <button className='mt-6' title='back to products list page'>
         <Link className='items-center' href='/products'>
           <span>←</span> Go Back
         </Link>
@@ -54,22 +54,22 @@ export default function SingleProductDetails() {
 
       <h2 className='text-3xl font-bold mb-6 text-center'>Product Details</h2>
 
-      <div className='bg-white rounded-xl overflow-hidden md:flex md:items-center md:justify-between'>
+      <div className='bg-white rounded-xl overflow-hidden md:flex md:items-center md:justify-between gap-6'>
         {/* Image */}
         <div className='md:w-1/2'>
           <img
             src={product.image_url}
             alt={product.name}
-            className='h-full w-full object-cover rounded'
+            className='h-90 w-full object-cover rounded'
           />
         </div>
 
         {/* Content */}
         <div className='p-6 md:w-1/2 space-y-4 pr-10'>
-          <h3 className='text-xl font-semibold text-gray-800'>
+          <h3 className='text-2xl font-semibold text-gray-800'>
             {product.name}
           </h3>
-          <p className='text-gray-600 text-sm'>
+          <p className='text-gray-600 text-lg'>
             {product.description
               .replace(/<\/?(p|span)([^>]*)?>/gi, '')
               .replace(/&amp;/g, '&') || 'No description'}
@@ -78,10 +78,10 @@ export default function SingleProductDetails() {
           {/* Ingredients */}
           {product.ingredients && product.ingredients.length > 0 && (
             <div>
-              <h4 className='text-xl font-semibold text-gray-800'>
+              <h4 className='text-2xl font-semibold text-gray-800'>
                 Ingredients:
               </h4>
-              <ul className='list-disc list-inside text-gray-700 text-sm mt-1 space-y-1'>
+              <ul className='list-disc list-inside text-gray-700 text-lg mt-1 space-y-1'>
                 {product.ingredients.map((ingredient, index) => (
                   <li key={index}>{ingredient.name}</li>
                 ))}
@@ -92,7 +92,7 @@ export default function SingleProductDetails() {
           <p className='text-lg text-gray-800 font-medium'>
             Price: <span className='text-green-600'>${product.price}</span>
           </p>
-          <p className='text-gray-700'>
+          <p className='text-gray-700 text-lg'>
             Available Quantity: {product.quantity}
           </p>
 

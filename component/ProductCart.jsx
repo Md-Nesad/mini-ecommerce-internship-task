@@ -18,12 +18,12 @@ export default function ProductCart() {
               key={item.id}
               className='md:flex md:items-center md:justify-between bg-white shadow-md p-4 rounded-lg border-1 rounded'
             >
-              <div>
-                <h3 className='text-lg font-semibold'>{item.name}</h3>
-                <p className='text-sm text-gray-600'>
+              <div className='space-y-3'>
+                <h3 className='text-xl font-semibold'>{item.name}</h3>
+                <p className='text-lg text-gray-600'>
                   Quantity: {item.quantity}
                 </p>
-                <p className='text-sm text-gray-600'>Price: ${item.price}</p>
+                <p className='text-lg text-green-600'>Price: ${item.price}</p>
               </div>
               <div>
                 <button
