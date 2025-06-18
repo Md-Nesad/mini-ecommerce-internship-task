@@ -1,0 +1,120 @@
+'use client'
+import { useCart } from '@/context/cartContext'
+import Link from 'next/link'
+import { useParams } from 'next/navigation'
+import React, { useEffect, useState } from 'react'
+
+export default function SingleProductDetails() {
+  const [product, setProduct] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [viewCart, setViewCart] = useState(false)
+  const { id } = useParams()
+  const { addToCart } = useCart()
+
+  const addProduct = () => {
+    addToCart(product)
+    alert('view cart to see your products')
+    setViewCart(true)
+  }
+
+  const fetchProduct = async () => {
+    setLoading(true)
+    try {
+      const res = await fetch(
+        `https://nanis-backend-live.sandbox.payinpos.com/api/v1/inventory/web/item/${id}`
+      )
+      const result = await res.json()
+      setProduct(result.data)
+    } catch (err) {
+      console.error('Error fetching single product:', err)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchProduct()
+  }, [])
+
+  if (loading) {
+    return (
+      <div className='flex justify-center items-center h-screen'>
+        <p className='text-gray-500 text-lg'>Loading...</p>
+      </div>
+    )
+  }
+
+  return (
+    <section className='max-w-4xl mx-auto px-4'>
+      <button className='mt-4' title='back to products list page'>
+        <Link className='items-center' href='/products'>
+          <span>←</span> Go Back
+        </Link>
+      </button>
+
+      <h2 className='text-3xl font-bold mb-2 text-center'>Product Details</h2>
+
+      <div className='bg-white rounded-xl shadow-md overflow-hidden md:flex md:items-center'>
+        {/* Image */}
+        <div className='md:w-1/2'>
+          <img
+            src={product.image_url}
+            alt={product.name}
+            className='h-82 w-full object-cover rounded'
+          />
+        </div>
+
+        {/* Content */}
+        <div className='p-6 md:w-1/2 space-y-3'>
+          <h3 className='text-xl font-semibold text-gray-800'>
+            {product.name}
+          </h3>
+          <p className='text-gray-600 text-sm'>
+            {product.description
+              .replace(/<\/?(p|span)([^>]*)?>/gi, '')
+              .replace(/&amp;/g, '&') || 'No description'}
+          </p>
+
+          {/* Ingredients */}
+          {product.ingredients && product.ingredients.length > 0 && (
+            <div>
+              <h4 className='text-xl font-semibold text-gray-800'>
+                Ingredients:
+              </h4>
+              <ul className='list-disc list-inside text-gray-700 text-sm mt-1 space-y-1'>
+                {product.ingredients.map((ingredient, index) => (
+                  <li key={index}>{ingredient.name}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <div className='flex items-center justify-between'>
+            <p className='text-lg text-gray-800 font-medium'>
+              Price: <span className='text-green-600'>${product.price}</span>
+            </p>
+            <p className='text-gray-700'>
+              Available Quantity: {product.quantity}
+            </p>
+          </div>
+
+          {/* Add to cart / View cart */}
+          {viewCart ? (
+            <div>
+              <Link href='/cart' className='text-blue-600 underline'>
+                View cart
+              </Link>
+            </div>
+          ) : (
+            <button
+              onClick={addProduct}
+              className='mt-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition'
+            >
+              Add to Cart
+            </button>
+          )}
+        </div>
+      </div>
+    </section>
+  )
+}
