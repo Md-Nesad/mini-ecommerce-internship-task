@@ -18,6 +18,7 @@ export default function ProductsPage() {
         `https://nanis-backend-live.sandbox.payinpos.com/api/v1/inventory/web/item/?limit=${LIMIT}&offset=${offset}`
       )
       const data = await res.json()
+      console.log('data', data)
       setProducts(data?.data?.results || [])
     } catch (error) {
       console.log('Error fatching products' + error)
